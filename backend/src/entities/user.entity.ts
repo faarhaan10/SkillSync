@@ -17,7 +17,7 @@ export class User {
     email: string
     
     @Column({ select: false }) // Password will not be returned in API responses
-    password: string
+    password!: string
 
     // This is a "Virtual Column" - it exists in your code but not in the DB
     get fullName(): string {

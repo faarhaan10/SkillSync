@@ -2,10 +2,13 @@ import "reflect-metadata";
 import * as dotenv from "dotenv"
 import { AppDataSource } from "./data-source"
 import express from "express"
+import jwt from "jsonwebtoken"; 
 import { User } from "./entities/user.entity"
 import { setupContainer } from "./config/container";
 import { createExpressServer } from "routing-controllers";
 import { UserController } from "./controllers/user.controller";
+import { AuthController } from "./controllers/auth.controller";
+import { authorizationChecker } from "./utils/auth.util";
 
 dotenv.config()
 
@@ -14,7 +17,7 @@ const port = process.env.PORT || 3000
 
 // 1. Setup DI Container
 setupContainer();
- 
+
 
 // step-2
 AppDataSource.initialize().then(async () => {
@@ -23,8 +26,11 @@ AppDataSource.initialize().then(async () => {
 
     // 3. Create Express Server with Routing Controllers
     const app = createExpressServer({
-        cors: true, // Enable CORS if needed
-        controllers: [UserController], // Register your controllers here
+        cors: true,
+        controllers: [UserController, AuthController],
+
+        // 🛡️ The Security Guard
+        authorizationChecker: authorizationChecker,
     });
 
     app.get("/", (req, res) => {

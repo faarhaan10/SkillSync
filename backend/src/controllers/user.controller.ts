@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body } from "routing-controllers";
+import { JsonController, Get, Post, Body, Authorized } from "routing-controllers";
 import { Service } from "typedi";
 import { UserService } from "../services/user.service";
 import { User } from "../entities/user.entity"; 
@@ -8,6 +8,7 @@ import { User } from "../entities/user.entity";
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @Authorized() 
   @Get("/")
   async getAll() {
     return await this.userService.getAllUsers();
