@@ -1,62 +1,35 @@
 import "reflect-metadata";
+import * as dotenv from "dotenv"
 import { AppDataSource } from "./data-source"
 import express from "express"
-import * as dotenv from "dotenv"
 import { User } from "./entities/user.entity"
+import { setupContainer } from "./config/container";
+import { createExpressServer } from "routing-controllers";
+import { UserController } from "./controllers/user.controller";
 
 dotenv.config()
 
-const app = express()
+// const app = express()
 const port = process.env.PORT || 3000
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// 1. Setup DI Container
+setupContainer();
+ 
 
+// step-2
 AppDataSource.initialize().then(async () => {
 
-    console.log("Database connected")
+    console.log("Data Source has been initialized!");
 
-    app.get("/users", async (req, res) => {
-        const users = await AppDataSource.manager.find(User)
-        res.json(users)
-    })
-
-    app.post("/users", async (req, res) => {
-        if (!req.body) {
-            return res.status(400).json({ error: "Request body is missing" })
-        }
-
-        const { firstName, lastName, email, password } = req.body
-
-        if (!firstName || !lastName) {
-            return res.status(400).json({ error: "firstName and lastName are required" })
-        }
-
-        const user = new User()
-        user.firstName = firstName
-        user.lastName = lastName
-        user.email = email
-        user.password = password
-
-        try {
-            const result = await AppDataSource.manager.save(user);
-            console.log('User saved:', result);
-            // We manually add fullName to the response since getters aren't enumerable by default
-            res.json({ ...result, fullName: user.fullName })
-        } catch (error) {
-            console.error('Error saving user:', { error });
-            res.status(500).json({
-                error: error.detail || "Internal Server Error",
-                query: error.query,
-                parameters: error.parameters,
-                success: false
-            })
-        }
-    })
-
+    // 3. Create Express Server with Routing Controllers
+    const app = createExpressServer({
+        cors: true, // Enable CORS if needed
+        controllers: [UserController], // Register your controllers here
+    });
 
     app.get("/", (req, res) => {
-        res.send("SkillSync Backend Running!")
+        res.send("SkillSync Backend Running with Clean Architecture!");
+
     })
 
     app.listen(port, () => {
