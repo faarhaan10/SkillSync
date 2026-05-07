@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Profile } from "./profile.entity";
+import { Roadmap } from "./roadmap.entity";
 
 
 
@@ -23,4 +25,13 @@ export class User {
     get fullName(): string {
         return `${this.firstName} ${this.lastName}`
     }
+
+
+    @OneToOne(()=> Profile, (profile)=> profile.user,{cascade:true})
+    @JoinColumn()
+    profile!: Profile;
+
+
+    @OneToMany(()=> Roadmap, (roadmap)=> roadmap.user,{cascade:true})
+    roadmaps!: Roadmap[];  
 }

@@ -28,9 +28,15 @@ AppDataSource.initialize().then(async () => {
     const app = createExpressServer({
         cors: true,
         controllers: [UserController, AuthController],
-
         // 🛡️ The Security Guard
         authorizationChecker: authorizationChecker,
+
+
+        // 🛡️ Enable Validation
+        validation:true,
+        classTransformer:true,  
+        development:true
+
     });
 
     app.get("/", (req, res) => {

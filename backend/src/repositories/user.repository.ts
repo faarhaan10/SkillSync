@@ -6,12 +6,17 @@ import { User } from "../entities/user.entity";
 export class UserRepository {
     private repo = AppDataSource.getRepository(User);
 
-    async create(data: Partial<User>) {
+    async createEntity(data: Partial<User>) {
+        return await this.repo.create(data);
+    }
+    async saveEntity(data: User) {
         return await this.repo.save(data);
     }
 
     async findAll() {
-        return await this.repo.find();
+        return await this.repo.find({
+            relations: ["profile", "roadmaps"]
+        });
     }
 
     async findByEmail(email: string) {

@@ -1,6 +1,6 @@
 ### Get users
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmI3ZDg5LTIzOTUtNDIxMy05NjczLTVkMjk4NjY1Njg5NSIsImlhdCI6MTc3ODEwNTA1NywiZXhwIjoxNzc4NzA5ODU3fQ.AGVcqWtcOiYLApYHntZ_FjA7YzUVuT7k-7utBpvY3GI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZmZGU4YTNlLTI0ZDgtNGNjNC1hNmFlLTM2NDMxNGZmMDc0OSIsImlhdCI6MTc3ODE3MDE1NiwiZXhwIjoxNzc4Nzc0OTU2fQ.ZygzefYE_tJEOzjDx_bq55DxfsWQWeufZDtYPUiLjNI
 ###
 
 
@@ -11,7 +11,7 @@ Content-Type: application/json
 {
     "firstName": "Farhan",
     "lastName": "Elias",
-    "email": "farhan@farhan.com",
+    "email": "farhan@farhan1122.com",
     "password": "farhan1212121"
 }
 ###
