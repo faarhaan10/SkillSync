@@ -1,0 +1,24 @@
+### Get my profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4N2YzZGRiLTkxNzQtNDZlYS1hNDhjLWU3YmRlYTY2NmQ2OCIsImlhdCI6MTc3ODE3OTU2MCwiZXhwIjoxNzc4Nzg0MzYwfQ.wf8HXNLBUCVlAgZEjqJpQIQSKHX5ieKSZVzXW60SK9M
+
+
+### Update my profile
+PUT http://localhost:3000/profile/6405b47f-f6d6-4c54-a3f6-36d56c0437bb
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4N2YzZGRiLTkxNzQtNDZlYS1hNDhjLWU3YmRlYTY2NmQ2OCIsImlhdCI6MTc3ODE3OTU2MCwiZXhwIjoxNzc4Nzg0MzYwfQ.wf8HXNLBUCVlAgZEjqJpQIQSKHX5ieKSZVzXW60SK9M
+Content-Type: application/json
+
+{
+    "bio": "AWS Expert",
+  "skills": [
+        { "name": "TypeScript", "level": "expert" },
+        { "name": "Docker", "level": "advanced" }
+        
+    ]
+}
+
+
+### Search for TypeScript experts
+GET http://localhost:3000/profile/search?skills=tailwindcss&skills=Docker
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4N2YzZGRiLTkxNzQtNDZlYS1hNDhjLWU3YmRlYTY2NmQ2OCIsImlhdCI6MTc3ODE3OTU2MCwiZXhwIjoxNzc4Nzg0MzYwfQ.wf8HXNLBUCVlAgZEjqJpQIQSKHX5ieKSZVzXW60SK9M
+

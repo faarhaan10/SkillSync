@@ -9,6 +9,9 @@ import { createExpressServer } from "routing-controllers";
 import { UserController } from "./controllers/user.controller";
 import { AuthController } from "./controllers/auth.controller";
 import { authorizationChecker } from "./utils/auth.util";
+import { CustomErrorHandlerMiddleware } from "./middlewares/error.middleware";
+import { ProfileController } from "./controllers/profile.controller";
+import { RoadmapController } from "./controllers/roadmap.controller";
 
 dotenv.config()
 
@@ -27,12 +30,10 @@ AppDataSource.initialize().then(async () => {
     // 3. Create Express Server with Routing Controllers
     const app = createExpressServer({
         cors: true,
-        controllers: [UserController, AuthController],
-        // 🛡️ The Security Guard
+        controllers: [UserController, AuthController,ProfileController,RoadmapController],
+        middlewares:[CustomErrorHandlerMiddleware],
+        defaultErrorHandler:false,
         authorizationChecker: authorizationChecker,
-
-
-        // 🛡️ Enable Validation
         validation:true,
         classTransformer:true,  
         development:true
