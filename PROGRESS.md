@@ -5,29 +5,26 @@
 
 ## 🏗️ Architecture (Phase 2)
 - **Framework:** Express + `routing-controllers`
-- **DI Container:** `typedi` (Configured in `src/config/container.ts`)
-- **Layers:** 
-  - **Controllers:** Auth, User, Profile, Roadmap
-  - **Services:** User, Profile, Roadmap
-  - **Repositories:** User (Custom), Profile/Roadmap (Generic TypeORM)
+- **Layers:** Controllers, Services, Repositories (DI via `typedi`)
 
 ## 🔑 Identity & Security (Phase 3)
-- **Authentication:** JWT with 7-day expiration.
-- **Security:** Global `@Authorized()` guard using `authorizationChecker`.
+- **Auth:** JWT + Bcrypt + `@Authorized` Guard
 
 ## 🛡️ Data Integrity (Phase 4)
-- **Validation:** `class-validator` + DTOs (UserDTO, RoadmapDTO).
-- **Relationships:**
-  - One-to-One: User ↔️ Profile
-  - Many-to-One: Roadmap ➡️ User
-- **JSONB:** Advanced skill storage with normalization (lowercase search).
+- **Validation:** `class-validator` + DTOs
+- **Relationships:** User (1:1) Profile, User (1:N) Roadmaps
 
 ## 🛠️ Error Resilience (Phase 5)
-- **Global Error Handler:** Custom middleware for consistent JSON error responses.
+- **Global Error Handler:** Unified JSON error responses
 
-## 🐳 Docker Workflow ("Pure Docker")
-- Standardized `docker-compose` environment with automatic `npm install`.
+## 👤 Profile & Skills (Phase 6)
+- **JSONB:** Flexible skill storage with case-insensitive search logic
 
-## ⏭️ Next Steps
-- [ ] Phase 8: File Uploads (Avatars)
-- [ ] Phase 9: Search Optimization & More Features
+## 🗺️ Roadmap Management (Phase 7)
+- **CRUD:** Manual roadmap creation with relationship linking
+
+## ⏭️ Next Steps (The Learning Path)
+- [ ] **Phase 8: AI Intelligence** (LangChain + OpenAI integration)
+- [ ] **Phase 9: File Uploads** (Avatar management with Multer)
+- [ ] **Phase 10: Production Readiness** (TypeORM Migrations + Swagger)
+- [ ] **Phase 11: Scaling** (Background Jobs with BullMQ + Redis)
