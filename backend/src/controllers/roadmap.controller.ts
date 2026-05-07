@@ -1,6 +1,7 @@
 import { JsonController, Get, Post, Body, Authorized, Req, Param } from "routing-controllers";
 import { Service } from "typedi";
 import { RoadmapService } from "../services/roadmap.service";
+import { CreateRoadmapDto } from "../dtos/roadmap.dto";
 
 @JsonController("/roadmaps")
 @Service()
@@ -9,7 +10,7 @@ export class RoadmapController {
 
   @Post("/")
   @Authorized() // 🔒 Only logged-in users can create
-  async create(@Req() req: any, @Body() data: any) {
+  async create(@Req() req: any, @Body() data: CreateRoadmapDto) {
     return await this.roadmapService.createRoadmap(req.user.id, data);
   }
 
