@@ -1,4 +1,12 @@
-import { JsonController, Get, Post, Body, Authorized, Req, Param } from "routing-controllers";
+import {
+  JsonController,
+  Get,
+  Post,
+  Body,
+  Authorized,
+  Req,
+  Param,
+} from "routing-controllers";
 import { Service } from "typedi";
 import { RoadmapService } from "../services/roadmap.service";
 import { CreateRoadmapDto } from "../dtos/roadmap.dto";
@@ -23,5 +31,16 @@ export class RoadmapController {
   @Get("/:id") // 🌐 Public route: Anyone can see a roadmap
   async getOne(@Param("id") id: string) {
     return await this.roadmapService.getRoadmapById(id);
+  }
+
+  @Post("/generate")
+  @Authorized()
+  async generate(@Req() req: any, @Body() body: { skill: string }) {
+    if (!body?.skill) throw new Error("Skill is required");
+
+    return await this.roadmapService.generateAndSaveAIRoadmap(
+      req.user.id,
+      body.skill,
+    );
   }
 }

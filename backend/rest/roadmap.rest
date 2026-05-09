@@ -1,6 +1,6 @@
 ### Create a Roadmap
 POST http://localhost:3000/roadmaps
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4N2YzZGRiLTkxNzQtNDZlYS1hNDhjLWU3YmRlYTY2NmQ2OCIsImlhdCI6MTc3ODE3OTU2MCwiZXhwIjoxNzc4Nzg0MzYwfQ.wf8HXNLBUCVlAgZEjqJpQIQSKHX5ieKSZVzXW60SK9M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlmNjQxZTgzLTYyMWYtNGE1ZC1hZTNmLTI0NjY0MGMwOGIzOCIsImlhdCI6MTc3ODM0NjkwNSwiZXhwIjoxNzc4OTUxNzA1fQ.wVTIn50lXrK_UzN_BcxzyM85CxTVT7J9eK7gJZ297MA
 Content-Type: application/json
 
 {
@@ -10,4 +10,15 @@ Content-Type: application/json
 
 ### Get my roadmaps
 GET http://localhost:3000/roadmaps/my
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4N2YzZGRiLTkxNzQtNDZlYS1hNDhjLWU3YmRlYTY2NmQ2OCIsImlhdCI6MTc3ODE3OTU2MCwiZXhwIjoxNzc4Nzg0MzYwfQ.wf8HXNLBUCVlAgZEjqJpQIQSKHX5ieKSZVzXW60SK9M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlmNjQxZTgzLTYyMWYtNGE1ZC1hZTNmLTI0NjY0MGMwOGIzOCIsImlhdCI6MTc3ODM0NjkwNSwiZXhwIjoxNzc4OTUxNzA1fQ.wVTIn50lXrK_UzN_BcxzyM85CxTVT7J9eK7gJZ297MA
+
+
+
+### Generate AI Roadmap
+POST http://localhost:3000/roadmaps/generate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlmNjQxZTgzLTYyMWYtNGE1ZC1hZTNmLTI0NjY0MGMwOGIzOCIsImlhdCI6MTc3ODM0NjkwNSwiZXhwIjoxNzc4OTUxNzA1fQ.wVTIn50lXrK_UzN_BcxzyM85CxTVT7J9eK7gJZ297MA
+Content-Type: application/json
+
+{
+    "skill": "React Developer"
+}

@@ -15,6 +15,9 @@ export class Roadmap {
     @Column()
     description!:string;
 
+    @Column({ type: 'jsonb', nullable: true })
+    steps: string[];
+
    @ManyToOne(()=> User, (user)=> user.roadmaps)
     user!: User;
     
