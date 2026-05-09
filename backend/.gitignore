@@ -6,3 +6,4 @@ tmp/
 temp/
 .agents/
 .vscode
+.env
