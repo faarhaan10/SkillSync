@@ -2,6 +2,8 @@ import { Service } from "typedi";
 import { ChatGroq } from "@langchain/groq";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
+
+// updated
 @Service()
 export class AIService {
   private model: ChatGroq;
