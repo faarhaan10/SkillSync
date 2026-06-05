@@ -2,7 +2,6 @@ import { Service } from "typedi";
 import { ChatGroq } from "@langchain/groq";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
-
 // updated
 @Service()
 export class AIService {
@@ -16,13 +15,13 @@ export class AIService {
     });
   }
 
-    async generateRoadmap(skill: string) {
+  async generateRoadmap(skill: string) {
     const response = await this.model.invoke([
       new SystemMessage(
         "You are a Senior Career Coach. You must respond ONLY with a JSON object. " +
-        "Do not include any conversational text before or after the JSON. " +
-        "The JSON must have this structure: " +
-        "{ \"title\": string, \"description\": string, \"steps\": string[] }"
+          "Do not include any conversational text before or after the JSON. " +
+          "The JSON must have this structure: " +
+          '{ "title": string, "description": string, "steps": string[] }',
       ),
       new HumanMessage(`Create a 5-step roadmap for: ${skill}`),
     ]);
@@ -34,5 +33,4 @@ export class AIService {
       throw new Error("AI failed to generate a valid JSON roadmap.");
     }
   }
-
 }
